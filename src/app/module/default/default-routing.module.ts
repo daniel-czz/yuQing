@@ -7,6 +7,7 @@ import { KeywordsComponent } from './keywords/keywords.component';
 import { ReportComponent } from './report/report.component';
 
 const routes: Routes = [
+  
   {
     path:'',
     component: DefaultComponent,
@@ -31,13 +32,12 @@ const routes: Routes = [
         path:'**',
         component: HomeComponent
       },
-    ]
-    // { //我们也可以把这些component定义在外面，这样定义的话就会对应用app html中的reouter-outlet
+    ],
+    // { //我们也可以把这些component定义在外面，这样定义的话就会对应用app html中的router-outlet
     //     path:'alarm',
     //     component: AlarmComponent
     //   },
   },
-  
   
 ];
 

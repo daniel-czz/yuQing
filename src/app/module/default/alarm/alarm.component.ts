@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AlarmComponent implements OnInit {
 
+  phone_num: string = "";
+  email: string ="";
   constructor() { }
 
   ngOnInit(): void {

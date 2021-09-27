@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DefaultComponent implements OnInit {
 
-  isCollapsed = false; //布局的常数
+  isCollapsed = true; //布局的常数
 
   constructor() { }
 

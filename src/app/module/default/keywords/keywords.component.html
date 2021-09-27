@@ -1,1 +1,55 @@
-<p>keywords works!</p>
+
+<div class="main_top">
+    <button nz-button nzType="primary" (click)="showModal()"> Add keywords </button>
+    <nz-modal 
+            [(nzVisible)]="isVisible" 
+            nzTitle="Add New KeyWord" 
+            (nzOnCancel)="handleCancel()" 
+            (nzOnOk)="handleOk()"
+            [nzOkLoading]="isOkLoading">
+            <ul  *nzModalContent class="input_list">
+                <li>
+                    <span>Must Include Keyword:</span>
+                    <input nz-input placeholder="Must Include Keyword:" [(ngModel)]="key.keyword">
+                </li>
+                <li>
+                    <span>May Include Keyword:</span>
+                    <input  nz-input placeholder="May Include Keyword" [(ngModel)]="key.may_keyword">
+                </li>
+                <li>
+                    <span>Not Include Keyword:</span>
+                    <input  nz-input placeholder="Not Include Keyword" [(ngModel)]="key.nokeyword">
+                </li>
+                <li>
+                    <span>Frequency:</span>
+                    <input  nz-input placeholder="Frequency" [(ngModel)]="key.frequency">
+                </li>
+            </ul>
+                
+    </nz-modal>
+</div>
+
+<nz-table #basicTable [nzFrontPagination]="false" [nzData]="listData">
+    <thead>
+        <tr>
+            <th>Must Include Keyword</th>
+            <th>May Include Keyword</th>
+            <th>Not Include Keyword</th>
+            <th>Frequency</th>
+            <th nzAlign="center" >Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of listData">
+            <td>{{ data.keyword }}</td>
+            <td>{{ data.may_keyword }}</td>
+            <td>{{ data.nokeyword }}</td>
+            <td>{{ data.frequency }}</td>
+            <td nzAlign="center">
+                <a>Modify</a>
+                <nz-divider nzType="vertical"></nz-divider>
+                <a>Delete</a>
+            </td>
+        </tr>
+    </tbody>
+</nz-table>

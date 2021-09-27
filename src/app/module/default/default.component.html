@@ -1,19 +1,25 @@
-<router-outlet></router-outlet>
+
 <nz-layout>
-      <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+      <nz-sider  nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
         <div class="logo"></div>
         <ul nz-menu nzTheme="dark" nzMode="inline">
-          <li nz-submenu nzTitle="User" nzIcon="user">
+        <li nz-submenu nzTitle="首页 Home" nzOpen nzIcon="home">
             <ul>
-              <li nz-menu-item>Tom</li>
-              <li nz-menu-item>Bill</li>
-              <li nz-menu-item>Alex</li>
+                <li nz-menu-item><a [routerLink]="['/default/home']" routerLinkActive="router-link-active">首页</a>
+                </li>
+            </ul>
+        </li>
+          
+          <li nz-submenu nzTitle="Opinion System Rep" nzOpen nzIcon="smile">
+            <ul>
+              <li nz-menu-item><a [routerLink]="['/default/report']" routerLinkActive="router-link-active" >全部舆情</a></li>
+              
             </ul>
           </li>
-          <li nz-submenu nzTitle="Team" nzIcon="team">
+          <li nz-submenu nzTitle="Opinion Setting" nzOpen nzIcon="tool" >
             <ul>
-              <li nz-menu-item>Team 1</li>
-              <li nz-menu-item>Team 2</li>
+              <li nz-menu-item><a [routerLink]="['/default/keywords']" routerLinkActive="router-link-active" >舆情keywords</a></li>
+              <li nz-menu-item><a [routerLink]="['/default/alarm']" routerLinkActive="router-link-active" >舆情报警设置</a></li>
             </ul>
           </li>
           <li nz-menu-item>
@@ -36,8 +42,10 @@
             <nz-breadcrumb-item>User</nz-breadcrumb-item>
             <nz-breadcrumb-item>Bill</nz-breadcrumb-item>
           </nz-breadcrumb>
-          <div class="inner-content">Bill is a cat.</div>
+          <div class="inner-content">
+            <router-outlet></router-outlet>
+          </div>
         </nz-content>
-        <nz-footer>Ant Design ©2020 Implement By Angular</nz-footer>
+        <nz-footer> ©2021 Implement By Zhangze</nz-footer>
       </nz-layout>
     </nz-layout>

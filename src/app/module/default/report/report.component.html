@@ -1,1 +1,43 @@
-<p>report works!</p>
+<div class="main_top">
+    <nz-date-picker [(ngModel)]="start_date" nzPlaceHolder="start date"></nz-date-picker>
+    ---
+    <nz-date-picker [(ngModel)]="end_date" nzPlaceHolder="end date"></nz-date-picker>
+    <button nz-button nzType="primary"> search </button> 
+</div>
+
+<nz-table #basicTable 
+    [nzData]="listData"
+    [nzFrontPagination]="false"
+    [nzLoading]="loading"
+    [nzTotal]="total"
+    [nzPageSize]="pageSize"
+    [nzPageIndex]="pageIndex"
+    (nzQueryParams)="onQueryParamsChange($event)"
+>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Keyword</th>
+            <th>Site</th>
+            <th>Update_time</th>
+            <th>Add_time</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of listData">
+            <td>{{ data.title }}</td>
+            <td>{{ data.type }}</td>
+            <td>{{ data.keyword }}</td>
+            <td>{{ data.site }}</td>
+            <td>{{ data.update_time }}</td>
+            <td>{{ data.add_time }}</td>
+            <td>
+                <a>Modify</a>
+                <nz-divider nzType="vertical"></nz-divider>
+                <a>Delete</a>
+            </td>
+        </tr>
+    </tbody>
+</nz-table>
