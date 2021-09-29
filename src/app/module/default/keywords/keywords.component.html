@@ -5,7 +5,7 @@
             [(nzVisible)]="isVisible" 
             nzTitle="Add New KeyWord" 
             (nzOnCancel)="handleCancel()" 
-            (nzOnOk)="handleOk()"
+            (nzOnOk)="addKeyWords()"
             [nzOkLoading]="isOkLoading">
             <ul  *nzModalContent class="input_list">
                 <li>
@@ -40,7 +40,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let data of listData">
+        <tr *ngFor="let data of listData; let i = index">
             <td>{{ data.keyword }}</td>
             <td>{{ data.may_keyword }}</td>
             <td>{{ data.nokeyword }}</td>
@@ -48,7 +48,8 @@
             <td nzAlign="center">
                 <a>Modify</a>
                 <nz-divider nzType="vertical"></nz-divider>
-                <a>Delete</a>
+                <!-- <button nz-button nzType="primary" (click)="delete(i)">Delete</button> -->
+                <a (click)="delete(i)">Delete</a>
             </td>
         </tr>
     </tbody>

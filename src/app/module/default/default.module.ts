@@ -7,7 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { ReportComponent } from './report/report.component';
 import { KeywordsComponent } from './keywords/keywords.component';
 import { AlarmComponent } from './alarm/alarm.component';
-
+import { LocalstorageService } from 'src/app/service/localstorage.service';
 
 //antd组件--------------------------------------------------
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
@@ -58,7 +58,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
     NzDividerModule,
     NzModalModule,
   ],
-  providers: [{ provide: NZ_I18N, useValue: zh_CN }],
+  providers: [{ provide: NZ_I18N, useValue: zh_CN }, LocalstorageService],
   // providers: [{ provide: NZ_I18N, useValue: en_US }],
 })
 export class DefaultModule { }

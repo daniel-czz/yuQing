@@ -1,7 +1,7 @@
 
 <nz-layout>
       <nz-sider  nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
-        <div class="logo"></div>
+        <div class="logo">Opinion System</div>
         <ul nz-menu nzTheme="dark" nzMode="inline">
         <li nz-submenu nzTitle="首页 Home" nzOpen nzIcon="home">
             <ul>
@@ -10,7 +10,7 @@
             </ul>
         </li>
           
-          <li nz-submenu nzTitle="Opinion System Rep" nzOpen nzIcon="smile">
+          <li nz-submenu nzTitle="System Report" nzOpen nzIcon="smile">
             <ul>
               <li nz-menu-item><a [routerLink]="['/default/report']" routerLinkActive="router-link-active" >全部舆情</a></li>
               

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LocalstorageService } from 'src/app/service/localstorage.service';
+
 
 @Component({
   selector: 'app-keywords',
@@ -7,50 +9,52 @@ import { Component, OnInit } from '@angular/core';
 })
 export class KeywordsComponent implements OnInit {
 
-key = {
+  constructor(public  localstorage: LocalstorageService) { }
+
+  ngOnInit(): void {
+    this.listData = this.localstorage.get("listData")
+  }
+
+  key = {
   keyword: "",
   may_keyword: "",
   nokeyword: "",
   frequency: "",
 }
-listData = [
-    {
-      keyword: '大庆油田',
-      may_keyword: '中国石油',
-      nokeyword: "延长石油",
-      frequency: '100'
-    },
-    {
-      keyword: '数字人民币',
-      may_keyword: 'dec',
-      nokeyword: "",
-      frequency: '100'
-    },
-  ];
+listData: any= [];
   
   isVisible = false;
   isOkLoading = false;
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
   showModal(): void {
     this.isVisible = true;
   }
 
-  handleOk(): void {
+  addKeyWords(): void {
     this.isOkLoading = true;
     setTimeout(() => {
       this.listData.push(this.key);
+      this.localstorage.set("listData", this.listData);
+      this.key = {
+        keyword: "",
+        may_keyword: "",
+        nokeyword: "",
+        frequency: "",
+      }
       this.isVisible = false;
       this.isOkLoading = false;
-    }, 3000);
+    }, 1000);
   }
 
   handleCancel(): void {
     this.isVisible = false;
+  }
+
+  delete(index: any){
+    //console.log("delete index # " + index + " "+ "item in list");
+    this.listData.splice(index,1);
+    this.localstorage.set('listData',this.listData);
+    //console.log(this.localstorage.get("listData"));
   }
 
 }
