@@ -36,10 +36,14 @@ body {
     margin-right: 3px;
     border: 1px solid #eee;
 }
+#svgImg{
+	cursor: pointer;
+}
 #login dl dd input.submit {
 	background: url("../../../assets/images/login_btn.jpg") no-repeat center center;
     border:none;
     margin: 10px;
+	margin-top: 45px;
 	margin-left:90px;
     padding: 2px 8px 0;
 	cursor:pointer;

@@ -1,19 +1,20 @@
 
     <div class="container">
         <div id="login">
-            <form action="/yuqing/admin.php?m=Public&amp;a=login" method="post" id="myform">
+        
                 <input type="hidden" name="ajaxlogin" id="ajaxlogin">
                 <input type="hidden" name="ajaxcode" id="ajaxcode">
                 <div class="l_title">Opinion System</div>
                 <dl>
-                    <dd>Account:<input class="text" type="text" name="username" id="username"></dd>
-                    <dd>Password:<input class="text" type="password" name="password" id="password"></dd>
-                    <dd>Verification code: <input id="verify" type="text" name="verify">
-                        <img id="verify_img" src="/admin/verify" title="看不清？点击刷新"
-                            onclick="javascript:this.src='/admin/verify?mt='+Math.random()">
+                    <dd>Account:<input class="text" type="text" [(ngModel)]="loginData.username"></dd>
+                    <dd>Password:<input class="text" type="password" [(ngModel)]="loginData.password"></dd>
+                    <dd>Verification code: <input id="verify" type="text" [(ngModel)]="loginData.verify">
+                        <!-- <img id="verify_img" src="/admin/verify" title="看不清？点击刷新"
+                            onclick="javascript:this.src='/admin/verify?mt='+Math.random()"> -->
+                            <span id= "svgImg" (click)="getCaptCha()"></span>
                     </dd>
-                    <dd><input type="submit" class="submit" name="dosubmit" value=""></dd>
+                    <dd><input type="button" class="submit" (click)="doLogin()"></dd>
                 </dl>
-            </form>
+            
         </div>
     </div>
