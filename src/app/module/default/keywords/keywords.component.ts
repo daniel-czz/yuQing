@@ -12,7 +12,10 @@ export class KeywordsComponent implements OnInit {
   constructor(public  localstorage: LocalstorageService) { }
 
   ngOnInit(): void {
-    this.listData = this.localstorage.get("listData")
+    if(this.localstorage.get("listData")){
+      this.listData = this.localstorage.get("listData");
+    }
+    
   }
 
   key = {
@@ -20,8 +23,14 @@ export class KeywordsComponent implements OnInit {
   may_keyword: "",
   nokeyword: "",
   frequency: "",
-}
-listData: any= [];
+};
+
+listData: any= [{
+  keyword: "1",
+  may_keyword: "1",
+  nokeyword: "1",
+  frequency: "1",
+}];
   
   isVisible = false;
   isOkLoading = false;
@@ -33,9 +42,10 @@ listData: any= [];
   addKeyWords(): void {
     this.isOkLoading = true;
     setTimeout(() => {
+      console.log(this.key);
       this.listData.push(this.key);
       this.localstorage.set("listData", this.listData);
-      this.key = {
+      this.key = { //把key重新清空
         keyword: "",
         may_keyword: "",
         nokeyword: "",

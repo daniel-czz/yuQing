@@ -6,11 +6,14 @@ import { HomeComponent } from './home/home.component';
 import { KeywordsComponent } from './keywords/keywords.component';
 import { ReportComponent } from './report/report.component';
 
+import { LoginGuard } from 'src/app/service/login.guard';
+
 const routes: Routes = [
   
   {
     path:'',
     component: DefaultComponent,
+    canActivate: [LoginGuard],
     children: [ //这个对应 default html里面的 router-outlet
       {
         path:'home',

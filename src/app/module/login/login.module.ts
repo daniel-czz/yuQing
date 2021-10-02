@@ -7,6 +7,7 @@ import { LoginComponent } from './login.component';
 
 //service--------------------------------------
 import { HttpService } from 'src/app/service/http.service';
+import { LocalstorageService } from 'src/app/service/localstorage.service';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,6 @@ import { HttpService } from 'src/app/service/http.service';
     FormsModule,
     LoginRoutingModule
   ],
-  providers: [HttpService]
+  providers: [HttpService, LocalstorageService]
 })
 export class LoginModule { }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpService } from 'src/app/service/http.service';
+import { LocalstorageService } from 'src/app/service/localstorage.service';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,9 @@ import { HttpService } from 'src/app/service/http.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public httpService: HttpService, public router: Router) { }
+  constructor(public httpService: HttpService, 
+              public router: Router, 
+              public localstorage: LocalstorageService ) { }
 
   ngOnInit(): void {
     // this.getCaptCha();
@@ -54,7 +57,9 @@ export class LoginComponent implements OnInit {
     this.httpService.post(api, this.loginData).then((response: any)=>{
       console.log(response);
       if (response.data.success){
-         this.router.navigate(['/default'])
+        console.log(response.data.result);
+        this.localstorage.set("userInfo", response.data.result); 
+        this.router.navigate(['/default'])
       }else{
         alert(response.data.message);
       }
