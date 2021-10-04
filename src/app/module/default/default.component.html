@@ -22,9 +22,10 @@
               <li nz-menu-item><a [routerLink]="['/default/alarm']" routerLinkActive="router-link-active" >舆情报警设置</a></li>
             </ul>
           </li>
-          <li nz-menu-item>
-            <i nz-icon nzType="file"></i>
-            <span>File</span>
+          <li nz-submenu nzTitle="Covid" nzOpen nzIcon="frown">
+            <ul>
+              <li nz-menu-item><a [routerLink]="['/default/covid']" routerLinkActive="router-link-active">Covid</a></li>
+            </ul>
           </li>
         </ul>
       </nz-sider>

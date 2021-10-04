@@ -30,6 +30,7 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
 
 //highchart表格模块
 import { HighchartsChartModule } from 'highcharts-angular';
+import { CovidComponent } from './covid/covid.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { HighchartsChartModule } from 'highcharts-angular';
     HomeComponent,
     ReportComponent,
     KeywordsComponent,
-    AlarmComponent
+    AlarmComponent,
+    CovidComponent
   ],
   imports: [
     

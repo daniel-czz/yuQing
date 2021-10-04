@@ -5,6 +5,7 @@ import { DefaultComponent } from './default.component';
 import { HomeComponent } from './home/home.component';
 import { KeywordsComponent } from './keywords/keywords.component';
 import { ReportComponent } from './report/report.component';
+import { CovidComponent } from './covid/covid.component';
 
 import { LoginGuard } from 'src/app/service/login.guard';
 
@@ -30,6 +31,10 @@ const routes: Routes = [
       {
         path:'report',
         component: ReportComponent
+      },
+      {
+        path:'covid',
+        component: CovidComponent
       },
       {
         path:'**',
