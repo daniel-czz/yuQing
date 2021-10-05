@@ -1,4 +1,26 @@
 <p>covid works!</p>
-<li *ngFor="let data of covidData; index as i">
+<!-- <li *ngFor="let data of covidData; index as i">
     {{i}} -- {{data.provinceName}}
-</li>
+</li> -->
+
+<nz-table #sortTable [nzData]="covidData" nzTableLayout="fixed">
+    <thead>
+        <tr>
+            <th *ngFor="let column of listOfColumn" 
+                    [nzSortFn]="column.compare"
+                    [nzSortPriority]="column.priority">
+                {{ column.title }}
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of sortTable.data">
+            <td>{{ data.continents }}</td>
+            <td>{{ data.provinceName }}</td>
+            <td>{{ data.currentConfirmedCount }}</td>
+            <td>{{ data.confirmedCount }}</td>
+            <td>{{ data.curedCount }}</td>
+            <td>{{ data.deadCount }}</td>
+        </tr>
+    </tbody>
+</nz-table>
