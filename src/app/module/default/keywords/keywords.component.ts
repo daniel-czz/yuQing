@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalstorageService } from 'src/app/service/localstorage.service';
+import { HttpService } from 'src/app/service/http.service';
 
 
 @Component({
@@ -9,12 +10,18 @@ import { LocalstorageService } from 'src/app/service/localstorage.service';
 })
 export class KeywordsComponent implements OnInit {
 
-  constructor(public  localstorage: LocalstorageService) { }
+  constructor(public localstorage: LocalstorageService,
+              public httpService: HttpService) { 
+                this.userInfo = this.localstorage.get("userInfo");
+                
+              }
 
   ngOnInit(): void {
-    if(this.localstorage.get("listData")){
-      this.listData = this.localstorage.get("listData");
+    this.listData = this.localstorage.get("listData");
+    if(!this.localstorage.get("listData")){
+      this.getKeyWords();
     }
+    
     
   }
 
@@ -25,12 +32,9 @@ export class KeywordsComponent implements OnInit {
   frequency: "",
 };
 
-listData: any= [{
-  keyword: "1",
-  may_keyword: "1",
-  nokeyword: "1",
-  frequency: "1",
-}];
+listData: any= {};
+
+userInfo: any= {};
   
   isVisible = false;
   isOkLoading = false;
@@ -65,6 +69,23 @@ listData: any= [{
     this.listData.splice(index,1);
     this.localstorage.set('listData',this.listData);
     //console.log(this.localstorage.get("listData"));
+  }
+
+  //获取舆情关键词
+  getKeyWords(){
+    var api= "http://yuqing.itying.com/api/keywordsList"
+    this.httpService.get(api,{
+      auth: {
+        username: this.userInfo.token,
+        password:"",
+      }
+    }).then((response: any)=>{
+        console.log(response);
+        
+        if(response.data.success == true){
+                   this.listData = response.data.result;
+         }
+    })
   }
 
 }

@@ -32,16 +32,16 @@ export class CovidComponent implements OnInit {
 
 
   listOfColumn = [
-    {
-      title: 'continents',
-      compare: null,
-      priority: false
-    },
-    {
-      title: 'provinceName',
-      compare: null,
-      priority: false
-    },
+    // {
+    //   title: 'continents',
+    //   compare: null,
+    //   priority: false
+    // },
+    // {
+    //   title: 'provinceName',
+    //   compare: null,
+    //   priority: false
+    // },
     {
       title: 'currentConfirmed',
       compare: (a: covideInterface, b: covideInterface) => a.currentConfirmedCount - b.currentConfirmedCount,
