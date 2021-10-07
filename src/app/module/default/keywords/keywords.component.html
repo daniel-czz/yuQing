@@ -1,8 +1,8 @@
 
 <div class="main_top">
-    <button nz-button nzType="primary" (click)="showModal()"> Add keywords </button>
+    <button nz-button nzType="primary" (click)="showAddModal()"> Add keywords </button>
     <nz-modal 
-            [(nzVisible)]="isVisible" 
+            [(nzVisible)]="isAddVisible" 
             nzTitle="Add New KeyWord" 
             (nzOnCancel)="handleCancel()" 
             (nzOnOk)="addKeyWords()"
@@ -24,8 +24,34 @@
                     <span>Frequency:</span>
                     <input  nz-input placeholder="Frequency" [(ngModel)]="key.frequency">
                 </li>
-            </ul>
-                
+            </ul> 
+    </nz-modal>
+
+    <nz-modal 
+        [(nzVisible)]="isModifyVisible" 
+        nzTitle="Modify KeyWord" 
+        (nzOnCancel)="handleCancel()" 
+        (nzOnOk)="modifyKeyWords()"
+        [nzOkLoading]="isOkLoading">
+        <ul *nzModalContent class="input_list">
+            <li>
+                <span>Must Include Keyword:</span>
+                <input nz-input placeholder="Must Include Keyword:" [(ngModel)]="editKey.keyword">
+            </li>
+            <li>
+                <span>May Include Keyword:</span>
+                <input nz-input placeholder="May Include Keyword" [(ngModel)]="editKey.may_keyword">
+            </li>
+            <li>
+                <span>Not Include Keyword:</span>
+                <input nz-input placeholder="Not Include Keyword" [(ngModel)]="editKey.nokeyword">
+            </li>
+            <li>
+                <span>Frequency:</span>
+                <input nz-input placeholder="Frequency" [(ngModel)]="editKey.frequency">
+            </li>
+        </ul>
+    
     </nz-modal>
 </div>
 
@@ -46,10 +72,10 @@
             <td>{{ data.nokeyword }}</td>
             <td>{{ data.frequency }}</td>
             <td nzAlign="center">
-                <a>Modify</a>
+                <a (click)="showModifyModal(data.id)">Modify</a>
                 <nz-divider nzType="vertical"></nz-divider>
                 <!-- <button nz-button nzType="primary" (click)="delete(i)">Delete</button> -->
-                <a (click)="delete(i)">Delete</a>
+                <a (click)="deleteKeyword(data.id)">Delete</a>
             </td>
         </tr>
     </tbody>
