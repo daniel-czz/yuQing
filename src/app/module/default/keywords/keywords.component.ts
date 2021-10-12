@@ -107,16 +107,16 @@ isOkLoading = false;
 
     var flag = confirm("Do you comfirm to delete?")
     if(flag){
-      var api= "http://yuqing.itying.com/api/deleteKeywords?id=" + dataId;
-    this.httpService.get(api, {
-      auth: {
-        username: this.userInfo.token,
-        password:"",
-      }
-    }).then((response: any)=>{
-        console.log(response);
-        this.getKeyWords();
-    })
+          var api= "http://yuqing.itying.com/api/deleteKeywords?id=" + dataId;
+        this.httpService.get(api, {
+          auth: {
+            username: this.userInfo.token,
+            password:"",
+          }
+        }).then((response: any)=>{
+            console.log(response);
+            this.getKeyWords();
+        })
     }
     
   }

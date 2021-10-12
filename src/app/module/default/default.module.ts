@@ -27,6 +27,7 @@ import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';//日期模块
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzMessageModule } from 'ng-zorro-antd/message';
 
 //highchart表格模块
 import { HighchartsChartModule } from 'highcharts-angular';
@@ -59,6 +60,7 @@ import { CovidComponent } from './covid/covid.component';
     NzTableModule,
     NzDividerModule,
     NzModalModule,
+    NzMessageModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: zh_CN }, LocalstorageService],
   // providers: [{ provide: NZ_I18N, useValue: en_US }],

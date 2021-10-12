@@ -3,13 +3,13 @@
 <ul class="input_list">
     <li class="input">
         <span>phone number:</span>
-        <input nz-input placeholder="phone number" [(ngModel)]="phone_num">
+        <input nz-input placeholder="phone number" [(ngModel)]="alarmInfo.tel">
     </li>
     <li class="input">
         <span>Email:</span>
-        <input nz-input placeholder="email" [(ngModel)]="email">
+        <input nz-input placeholder="email" [(ngModel)]="alarmInfo.email">
     </li>
     <li>
-        <button nz-button nzType="primary" class="btn"> Save</button>
+        <button nz-button nzType="primary" class="btn" (click)=updateContact()> Save</button>
     </li>
 </ul>
