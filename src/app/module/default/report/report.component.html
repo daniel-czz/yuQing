@@ -2,7 +2,9 @@
     <nz-date-picker [(ngModel)]="start_date" nzPlaceHolder="start date"></nz-date-picker>
     ---
     <nz-date-picker [(ngModel)]="end_date" nzPlaceHolder="end date"></nz-date-picker>
-    <button nz-button nzType="primary"> search </button> 
+    <button nz-button nzType="primary" (click)="doSearch()"> Search </button> 
+    <nz-divider nzType="vertical"></nz-divider>
+    <button nz-button nzType="primary" (click)="doReset()"> Clear Filter </button>
 </div>
 
 <nz-table #basicTable 
@@ -13,26 +15,36 @@
     [nzPageSize]="pageSize"
     [nzPageIndex]="pageIndex"
     (nzQueryParams)="onQueryParamsChange($event)"
+    [nzScroll]="{ y: '400px' }"
 >
     <thead>
         <tr>
             <th>Name</th>
             <th>Type</th>
             <th>Keyword</th>
-            <th>Site</th>
-            <th>Update_time</th>
+            <!-- <th>Update_time</th> -->
             <th>Add_time</th>
+            <th>Link</th>
             <th>Action</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let data of listData">
             <td>{{ data.title }}</td>
-            <td>{{ data.type }}</td>
-            <td>{{ data.keyword }}</td>
-            <td>{{ data.site }}</td>
-            <td>{{ data.update_time }}</td>
-            <td>{{ data.add_time }}</td>
+            <td>
+                <div [ngSwitch]="data.type">
+                    <div *ngSwitchCase="1">positive</div>
+                    <div *ngSwitchCase="-1">negative</div>
+                    <div *ngSwitchDefault>unknown</div>
+                </div>
+            </td>
+            <td>{{ data.keywords }}</td>
+            <!-- <td>{{ data.update_time*1000 | date:'yyyy-MM-dd HH:mm:ss' }}</td> -->
+            <td>{{ data.add_time*1000 | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+            <td>
+                <a [href]="data.url" target="_blank" >{{ data.url }}</a>
+                
+            </td>
             <td>
                 <a>Modify</a>
                 <nz-divider nzType="vertical"></nz-divider>

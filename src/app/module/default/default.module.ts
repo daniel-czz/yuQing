@@ -8,6 +8,7 @@ import { ReportComponent } from './report/report.component';
 import { KeywordsComponent } from './keywords/keywords.component';
 import { AlarmComponent } from './alarm/alarm.component';
 import { LocalstorageService } from 'src/app/service/localstorage.service';
+import { FormattimePipe } from 'src/app/pipe/formattime.pipe';
 
 //antd组件--------------------------------------------------
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
@@ -41,7 +42,8 @@ import { CovidComponent } from './covid/covid.component';
     ReportComponent,
     KeywordsComponent,
     AlarmComponent,
-    CovidComponent
+    CovidComponent,
+    FormattimePipe
   ],
   imports: [
     

@@ -20,8 +20,6 @@ export class KeywordsComponent implements OnInit {
     
     this.getKeyWords();
     
-    
-    
   }
 
   key = {

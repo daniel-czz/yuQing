@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpService } from 'src/app/service/http.service';
+import { LocalstorageService } from 'src/app/service/localstorage.service';
 
 @Component({
   selector: 'app-report',
@@ -7,102 +9,79 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReportComponent implements OnInit {
   
-  //日期筛选---------------------------------
-  start_date = "";
-  end_date = "";
-  date ="";
-
-  //表格信息--------------------------------
-  loading = false;
-  total = 1; // 内容总数量 total=pagesize*页数 
-  pageSize = 3; //每页显示的数量
-  pageIndex = 1; //当前是第一页
-  listData = [
-    {
-      title: '习近平将出席深圳经济特区建立40周年庆祝大会',
-      urL:"http://www.xinhuanet.com/politics/leaders/2020-10/12/c_1126596607.htm",
-      type: '正面舆情',
-      keyword: '深圳',
-      site: "人民网",
-      update_time:'2012-12-34',
-      add_time:"2012-12-34",
-
-    },
-    {
-      title: '台独”分子挑拨中欧关系，还试图策反大陆人员',
-      url:"https://3w.huanqiu.com/a/5e93e2/40Fzu8qFtlv?agt=8",
-      type: '负面舆情',
-      keyword: '台独',
-      site: "环球网",
-      update_time:'2012-12-34',
-      add_time:"2012-12-34",
-
-    },
-    {
-      title: '2020诺贝尔经济学奖公布！两位美国经济学家获奖',
-      type: '正面舆情',
-      keyword: '诺贝尔',
-      site: "大众网",
-      update_time:'2012-12-34',
-      add_time:"2012-12-34",
-
-    },
-    {
-      title: '习近平将出席深圳经济特区建立40周年庆祝大会',
-      urL:"http://www.xinhuanet.com/politics/leaders/2020-10/12/c_1126596607.htm",
-      type: '正面舆情',
-      keyword: '深圳',
-      site: "人民网",
-      update_time:'2012-12-34',
-      add_time:"2012-12-34",
-
-    },
-    {
-      title: '台独”分子挑拨中欧关系，还试图策反大陆人员',
-      url:"https://3w.huanqiu.com/a/5e93e2/40Fzu8qFtlv?agt=8",
-      type: '负面舆情',
-      keyword: '台独',
-      site: "环球网",
-      update_time:'2012-12-34',
-      add_time:"2012-12-34",
-
-    },
-    {
-      title: '2020诺贝尔经济学奖公布！两位美国经济学家获奖',
-      type: '正面舆情',
-      keyword: '诺贝尔',
-      site: "大众网",
-      update_time:'2012-12-34',
-      add_time:"2012-12-34",
-
-    },
-    {
-      title: '2020诺贝尔经济学奖公布！两位美国经济学家获奖7',
-      type: '正面舆情',
-      keyword: '诺贝尔',
-      site: "大众网",
-      update_time:'2012-12-34',
-      add_time:"2012-12-34",
-
-    },
-    {
-      title: '2020诺贝尔经济学奖公布！两位美国经济学家获奖8',
-      type: '正面舆情',
-      keyword: '诺贝尔',
-      site: "大众网",
-      update_time:'2012-12-34',
-      add_time:"2012-12-34",
-    }   
-  ];
-  
-  constructor() { }
+  constructor( public httpService: HttpService,
+               public localstorage: LocalstorageService){
+                 this.userInfo = this.localstorage.get("userInfo");
+               }
 
   ngOnInit(): void {
+    this.getData();
     this.total = 20;
   }
 
+  //日期筛选---------------------------------
+  start_date = "";
+  end_date = "";
+  start_unix_date: number= 0;
+  end_unix_date: number= 0;
+  // date ="";
+
+  //表格信息--------------------------------
+  loading = false;
+  total = 0; // 内容总数量 total=pagesize*页数 
+  pageSize = 20; //每页显示的数量
+  pageIndex = 1; //当前是第一页
+  
+  userInfo: any= {};
+  listData : any= [];
+  // listData = [];
+
   onQueryParamsChange(params: any){
+    // console.log("this is the page info")
     console.log(params);
+    console.log('we are in page' + params.pageIndex);
+    this.pageIndex = params.pageIndex;
+    this.getData();
+  }
+
+  getData(): void{
+    this.loading =true;
+    var api = `http://yuqing.itying.com/api/reportList?page=${this.pageIndex}&pageSize=${this.pageSize}&startTime=${this.start_unix_date}&endTime=${this.end_unix_date}`; 
+    this.httpService.get(api, {
+      auth: {
+        username: this.userInfo.token,
+        password:"",
+      }
+    }).then((response: any)=>{
+        console.log("getdata response");
+        this.listData = response.data.result;
+        this.total = response.data.total;
+        console.log(response);
+        console.log(this.total);
+        this.loading =false;
+    })
+  }
+
+  //do search 
+  doSearch(): void{
+    console.log("start date: "+ this.start_date);
+    console.log("end date: "+ this.end_date);
+    var start = new Date(this.start_date);
+    this.start_unix_date = start.getTime()/1000;
+    var end = new Date(this.end_date);
+    this.end_unix_date = end.getTime()/1000;
+    // console.log("start unix date: "+ this.start_unix_date);
+    // console.log("end unix date: "+ this.end_unix_date);
+    this.getData();
+  }
+
+  //clear filter 
+  doReset(): void{
+    this.end_unix_date=0;
+    this.start_unix_date=0;
+    this.end_date = "";
+    this.start_date = "";
+    this.getData();
   }
 
 }
