@@ -9,10 +9,10 @@ import { LocalstorageService } from 'src/app/service/localstorage.service';
 })
 export class ReportComponent implements OnInit {
   
-  constructor( public httpService: HttpService,
-               public localstorage: LocalstorageService){
-                 this.userInfo = this.localstorage.get("userInfo");
-               }
+constructor(public httpService: HttpService,
+            public localstorage: LocalstorageService){ 
+              this.userInfo = this.localstorage.get("userInfo");
+            }
 
   ngOnInit(): void {
     this.getData();

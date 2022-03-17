@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { KeywordsComponent } from './keywords/keywords.component';
 import { ReportComponent } from './report/report.component';
 import { CovidComponent } from './covid/covid.component';
+import { LoginComponent } from '../login/login.component';
 
 import { LoginGuard } from 'src/app/service/login.guard';
 
@@ -37,7 +38,7 @@ const routes: Routes = [
         component: CovidComponent
       },
       {
-        path:'**',
+        path:'',
         component: HomeComponent
       },
     ],
@@ -46,6 +47,7 @@ const routes: Routes = [
     //     component: AlarmComponent
     //   },
   },
+  
   
 ];
 

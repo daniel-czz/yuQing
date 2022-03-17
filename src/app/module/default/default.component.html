@@ -37,6 +37,9 @@
             [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
             (click)="isCollapsed = !isCollapsed"
           ></i>
+
+          <button nz-icon [nzIconfont]="'icon-tuichu'" style="font-size: 22px;" class="logout" (click)=logout()></button>
+          
         </nz-header>
         <nz-content>
           <nz-breadcrumb>

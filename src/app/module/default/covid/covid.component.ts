@@ -69,7 +69,7 @@ export class CovidComponent implements OnInit {
     console.log(api);
     this.httpService.get(api).then((response: any)=> {
       // console.log(response);
-      this.covidData = response.data.newslist;
+      this.covidData = response.data;
       console.log(this.covidData);
     })
     }
